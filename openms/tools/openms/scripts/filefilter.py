@@ -36,10 +36,10 @@ if __name__ == '__main__':
 
     filefilter(in_port, out_port)
 
-    wrkflw.postvalidation( \
-      modulename="file filter", \
-      inpath=in_port, \
-      outpath=out_port, \
-      logtype=wrkflw.LogType.SINGLE, \
-      output_per_job=1
-    )
+    # wrkflw.postvalidation( \
+    #   modulename="file filter", \
+    #   inpath=in_port, \
+    #   outpath=out_port, \
+    #   logtype=wrkflw.LogType.SINGLE, \
+    #   output_per_job=1
+    # )
