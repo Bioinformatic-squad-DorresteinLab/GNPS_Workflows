@@ -15,11 +15,11 @@ def mapalignerposeclustering(input_port, ini_file, out_port):
     outputs = []
     for input_file,file_count in wrkflw.parsefolder(input_port, blacklist=['log']):
         command += ' {}'.format(input_file)
-        outputs.append("{out}/{out}-{filec}.featureXML ".format(out=out_port,filec=file_count))
+        outputs.append(" {out}/{out}-{filec}.featureXML".format(out=out_port,filec=file_count))
         # command += input_file + ' '
-    command += '-out' + ' '.join(outputs)
+    command += ' -out' + ' '.join(outputs)
     # command += '> ' + out_port+'/logfile-00000.txt'
-    command += '-log ' + out_port+'/logfile-00000.txt'
+    command += ' -log ' + out_port+'/logfile-00000.txt'
 
     print("COMMAND: " + command + "\n")
     os.system(command)
