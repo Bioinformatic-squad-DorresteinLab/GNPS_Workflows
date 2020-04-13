@@ -64,7 +64,7 @@ unset LD_LIBRARY_PATH
 
 CONDA_ROOT=<path to conda root>
 OPENMS_CONTRIB_LIBS=<path to openms contrib-build lib>
-OPENMS_BUILD=<path to openms build dir>
+OPENMS_BUILD_DIR=<path to openms build dir>
 
 ###
 # conda
@@ -81,8 +81,8 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${OPENMS_CONTRIB_LIBS}/lib
 ###
 # openms-build
 ###
-export PATH=${PATH}:${OPENMS_BUILD}/bin
-export LD_LIBRARY_PATH=${PATH}:${OPENMS_BUILD}/lib
+export PATH=${PATH}:${OPENMS_BUILD_DIR}/bin
+export LD_LIBRARY_PATH=${PATH}:${OPENMS_BUILD_DIR}/lib
 
 ###
 # set CXX compiler include flag
