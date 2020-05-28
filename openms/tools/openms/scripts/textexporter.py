@@ -10,10 +10,15 @@ import openms_workflow as wrkflw
 '''
 def textexporter(input_port, ini_file, out_port):
   for input_file,file_count in list(wrkflw.parsefolder(input_port, blacklist=['log'])):
-    command = "TextExporter -ini " + ini_file + " -in " + input_file + " -out " + out_port+'/'+out_port+'-'+file_count+'.csv' + ' -log ' + out_port+'/logfile-00000.txt'
-    # command = "TextExporter -ini " + ini_file + " -in " + input_file + " -out " + out_port+'/'+out_port+'-'+file_count+'.csv' + ' > ' + out_port+'/logfile-00000.txt'
-
+    command = "TextExporter"
+    if ini_file is not None:
+      command += " -ini {}".format(ini_file)
+    command += " -in {}".format(input_file)
+    command += " -out {}".format(out_port+"/"+out_port+"-"+file_count+".tsv")
+    command += " > {}".format(out_port+"/logfile-"+file_count+".txt")
+    # command += " -log {}".format(out_port+"/logfile-"+file_count+".txt")
     print("COMMAND: " + command + "\n")
+    
     os.system(command)
 
 

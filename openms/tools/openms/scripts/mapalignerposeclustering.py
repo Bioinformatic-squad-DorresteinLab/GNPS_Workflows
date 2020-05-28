@@ -18,8 +18,8 @@ def mapalignerposeclustering(input_port, ini_file, out_port):
         outputs.append(" {out}/{out}-{filec}.featureXML".format(out=out_port,filec=file_count))
         # command += input_file + ' '
     command += ' -out' + ' '.join(outputs)
-    # command += '> ' + out_port+'/logfile-00000.txt'
-    command += ' -log ' + out_port+'/logfile-00000.txt'
+    command += ' > ' + out_port+'/logfile-00000.txt'
+    # command += ' -log ' + out_port+'/logfile-00000.txt'
 
     print("COMMAND: " + command + "\n")
     os.system(command)
@@ -46,8 +46,8 @@ if __name__ == '__main__':
 
     mapalignerposeclustering(in_port, ini_file, out_port)
 
-    wrkflw.postvalidation(modulename="map aligner pose-clustering", \
-      inpath=in_port, \
-      outpath=out_port, \
-      logtype=wrkflw.LogType.SINGLE
-    )
+    # wrkflw.postvalidation(modulename="map aligner pose-clustering", \
+    #   inpath=in_port, \
+    #   outpath=out_port, \
+    #   logtype=wrkflw.LogType.SINGLE
+    # )

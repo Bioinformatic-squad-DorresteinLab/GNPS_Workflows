@@ -14,10 +14,12 @@ def get_exec_cmd(input_file, file_count, ini_file, out_port):
     if ini_file is not None:
         command += " -ini " + ini_file
 
-    command += " -in " + input_file + " -out " + (out_port+"/"+out_port+"-"+file_count+".featureXML")    
+    command += " -in " + input_file 
+    command += " -out " + (out_port+"/"+out_port+"-"+file_count+".featureXML")
+    command += " -out_chrom {}".format(out_port+"/chrom-"+file_count+".mzML")
     command += " -algorithm:epd:enabled false"
-    command += " -log " + out_port+"/logfile-"+file_count+".txt"
-    # command += " > " + out_port+"/logfile-"+file_count+".txt"
+    # command += " -log " + out_port+"/logfile-"+file_count+".txt"
+    command += " > " + out_port+"/logfile-"+file_count+".txt"
 
     print("COMMAND\n", command)
     return command
@@ -70,4 +72,4 @@ if __name__ == '__main__':
     # execute module
     featurefindermetabo(in_port, ini_file, out_port)
 
-    wrkflw.postvalidation(modulename="feature finder metabo", inpath=in_port, outpath=out_port)
+    wrkflw.postvalidation(modulename="feature finder metabo", inpath=in_port, outpath=out_port, output_per_job=2)

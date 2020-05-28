@@ -8,7 +8,7 @@ import openms_workflow as wrkflw
 '''
 #6 module: gnps export
 '''
-def gnpsexport(input_port, inputFiles_port, ini_file, out_port):
+def gnpsexport(input_port, inputFiles_port, ini_file, out_port):    
     for input_file,file_count in list(wrkflw.parsefolder(input_port, whitelist=['consensusXML'])):
         output = out_port+'/'+out_port+"-"+file_count+".mgf"
 
@@ -26,7 +26,7 @@ def gnpsexport(input_port, inputFiles_port, ini_file, out_port):
         for input_file,file_count in sorted(list(wrkflw.parsefolder(inputFiles_port, whitelist=['mzML']))):
             command += " " + input_file
         command += " -out " + output
-        # command += ' > ' + out_port+'/logfile-00000.txt'
+#        command += ' > ' + out_port+'/logfile-00000.txt'
         command += ' -log ' + out_port+'/logfile-00000.txt'
 
         print("COMMAND: " + command + "\n")
@@ -35,7 +35,7 @@ def gnpsexport(input_port, inputFiles_port, ini_file, out_port):
 
 
 if __name__ == '__main__':
-    print("===GNPS EXPORT===")
+    print("===GNPS Export===")
 
     # set env
     os.environ["LD_LIBRARY_PATH"] = "{}:{}".format(sys.argv[1],sys.argv[2])    

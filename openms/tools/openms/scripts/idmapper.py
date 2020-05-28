@@ -16,8 +16,8 @@ def get_exec_cmd(input_file, file_count, ini_file, idxml_path, input_port, out_p
     command += ' -in ' + input_file + ' -id ' + idxml_path
     command += ' -spectra:in ' + input_port+'/'+input_port+'-'+file_count+".mzML"
     command += ' -out ' + out_port+'/'+out_port+'-'+file_count+'.featureXML'
-    # command += ' > ' + out_port+'/logfile-'+file_count+'.txt'
-    command += ' -log ' + out_port+'/logfile-'+file_count+'.txt'
+    # command += ' -log ' + out_port+'/logfile-'+file_count+'.txt'
+    command += ' > ' + out_port+'/logfile-'+file_count+'.txt'
 
 
     print("COMMAND: " + command + '\n')
@@ -29,7 +29,9 @@ def get_exec_cmd(input_file, file_count, ini_file, idxml_path, input_port, out_p
 '''
 def idmapper(input_port, ini_file, idxml_path, featurefinder_port, out_port):
     commands = []
-    for input_file,file_count in wrkflw.parsefolder(featurefinder_port, blacklist=['log']):
+    for input_file,file_count in wrkflw.parsefolder(featurefinder_port, \
+                                                    whitelist=["featureXML"], \
+                                                    blacklist=['log']):
         cmd = get_exec_cmd( \
           input_file, \
           file_count, \
@@ -54,7 +56,7 @@ if __name__ == '__main__':
     os.environ["PATH"] = "{}:{}".format(sys.argv[3],sys.argv[4])
     os.environ["OPENMS_DATA_PATH"] = sys.argv[5]
 
-    # ini file
+    # ini file = sys.argv[7]
     ini_file = None
     if os.path.exists('iniFiles'):
         ini_dir = list(wrkflw.parsefolder('iniFiles'))
