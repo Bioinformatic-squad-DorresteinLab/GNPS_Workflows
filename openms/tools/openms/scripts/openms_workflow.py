@@ -39,13 +39,13 @@ def postvalidation(modulename, inpath, outpath, logtype=LogType.MULTIPLE, output
   num_jobs = len(list(parsefolder(outpath, blacklist=['log'])))
   num_logs = len(list(parsefolder(outpath, whitelist=['log'])))
 
-  if num_logs == exp_logs and num_jobs == exp_jobs:
+  if num_logs == exp_logs and num_jobs <= exp_jobs:
     print("passed!")
     return True
 
   print("num jobs", num_jobs, exp_jobs)
   print("num logs", num_logs, exp_logs)
-  print("check", num_logs == exp_logs and num_jobs == exp_jobs)
+  print("check", num_logs == exp_logs and num_jobs <= exp_jobs)
 
   if num_logs:
     print(modulename.upper()+": Issue with executing module")
